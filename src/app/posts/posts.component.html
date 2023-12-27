@@ -1,0 +1,86 @@
+<div class="posts__container">
+  <app-navbar></app-navbar>
+  <div class="container_posts" id="container_posts">
+    <div *ngFor="let post of posts" class="posts_card">
+      <div class="post" [attr.id]="'post_' + post.id">
+        <div class="postStatus" *ngIf="post.event_status">
+          <span
+            [ngClass]="{
+              status_Ended : post.event_status === 'Ended',
+              status_Upcoming: post.event_status === 'Upcoming',
+              status_Ongoing: post.event_status === 'Ongoing',
+              event_status: true
+            }"
+            >{{ post.event_status }}</span
+          >
+        </div>
+        <div class="postImage">
+          <img
+            [src]="post.urls ? post.urls[0] : 'UrbanView.png'"
+            class="image"
+          />
+          <span
+            class="interaction_count"
+            *ngIf="post.going_count > 0 && post.post_type === 'Events'"
+            ><span [attr.id]="'post_' + post.id + '_going'"
+              >{{ post.going_count }} going</span
+            >
+            <img src="../assets/animated_gif.gif" alt="goinggif" class="animated_gif">
+            </span
+          >
+          <span
+            class="interaction_count"
+            *ngIf="post.donated_count > 0 && post.post_type === 'Charity'"
+            ><span [attr.id]="'post_' + post.id + '_donated'"
+              >{{ post.donated_count }} donated</span
+            >
+            <img src="../assets/charity_gif.gif" alt="donatedgif" class="animated_gif">
+            </span
+          >
+          <span class="interaction_count" *ngIf="post.like_count > 0"
+            ><span [attr.id]="'post_' + post.id + '_like'"
+              >{{ post.like_count }} liked</span
+            >
+            <img src="../assets/like_gif.gif" alt="likesgif" class="animated_gif">
+            </span
+          >
+        </div>
+        <div class="postTags">
+          <span *ngFor="let tag of post.tags_array" class="tags">{{
+            tag
+          }}</span>
+        </div>
+        <div class="postTitle">
+          <p>{{ post.title }}</p>
+        </div>
+        <div class="postDescription">
+          <p>{{ post.description.slice(0, 85) }}...</p>
+        </div>
+        <div class="postUser">
+          <span class="postUser_user">
+            <span>
+              <img
+                *ngIf="post.avatar"
+                [src]="post.avatar"
+                class="postAvatar"
+              />
+            </span>
+            <span>&nbsp;&#64;{{ post.username }}</span>
+            &nbsp;&middot;&nbsp;
+            <span>{{ post.created_at }}</span>
+          </span>
+          <span>
+            <button
+              class="index-share-button"
+              [attr.data-title]="post.title"
+              [attr.data-text]="post.description"
+              [attr.data-url]="'/post/' + post.id"
+            >
+              <img src="../assets/index_share.png" alt="Share Post" />
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="header">
+  <div class="navbar">
+    <div class="logo">
+      <img src="../assets/UrbanView.png" alt="urbanviewlogo" id="logo" />
+    </div>
+    <div class="search-bar">
+      <form action="#">
+        <input type="text" />
+        <input type="submit" value="Search" />
+      </form>
+    </div>
+    <div class="button-list">
+      <a routerLink="/posts/new">
+        <img src="../assets/add.png" alt="newPostbtn" id="addIcon" />
+      </a>
+      <img
+        src="../assets/userimg.png"
+        alt="currentuseravatar"
+        id="userIcon"
+        (click)="showuserDropdown = !showuserDropdown"
+      />
+      <div *ngIf="showuserDropdown" class="dropdown">
+        <div class="dropdown__buttons">
+          <a routerLink="/profile"><button>Account</button></a>
+          <a routerLink="/signin"><button>Logout</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="navbar__tabs">
+    <div class="navbar__tabs--options">
+      <span><a routerLink="/posts" (click)="selectedTab('Events')" [ngClass]="{selected: tab == 'Events'}">Events</a></span>
+      <span><a routerLink="/posts" (click)="selectedTab('News')" [ngClass]="{selected: tab == 'News'}">News</a></span>
+      <span><a routerLink="/posts" (click)="selectedTab('Jobs')" [ngClass]="{selected: tab == 'Jobs'}">Jobs</a></span>
+      <span><a routerLink="/posts" (click)="selectedTab('Charity')" [ngClass]="{selected: tab == 'Charity'}">Charity</a></span>
+      <span><a routerLink="/posts" (click)="selectedTab('Explore')" [ngClass]="{selected: tab == 'Explore'}">Explore</a></span>
+    </div>
+    <div class="navbar__tabs--location">
+      <p>
+        <span (click)="showDropdown = !showDropdown">{{
+          selectedCity == "" ? "Select Location" : selectedCity
+        }}</span>
+        <span class="navbar__tabs--locationdropdown"
+          ><img src="../assets/dropdown.png" alt="downarrow" id="arrowIcon" />
+          <div *ngIf="showDropdown" class="navbar__tabs--locationDropdown">
+            <input
+              type="text"
+              placeholder="Search cities"
+              id="locationSearch"
+            />
+            <ul id="locationList">
+              <li *ngFor="let city of cities" (click)="selectCity(city)">
+                {{ city }}
+              </li>
+            </ul>
+          </div>
+        </span>
+      </p>
+    </div>
+  </div>
+</div>

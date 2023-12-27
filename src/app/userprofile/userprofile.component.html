@@ -1,0 +1,106 @@
+<div class="userprofile__container">
+  <app-navbar></app-navbar>
+  <div class="userprofile" id="userprofile">
+    <div class="navigation">
+      <span>
+        <a routerLink="/posts">
+          <img src="../assets/prev.png" alt="prevIcon" id="prevIcon" />
+        </a>
+      </span>
+      <span class="navigation--text">Home</span>
+    </div>
+    <div class="userprofile__profile">
+      <div class="userprofile__profile--image">
+        <img src="../assets/userimg.png" alt="profileImage" />
+      </div>
+      <div class="userprofile__profile--data">
+        <div class="userDetails">
+          <span class="userIcon">
+            <img src="../assets/profileuser.png" alt="userIcon" />
+            NaveenPrasanth
+          </span>
+          <span class="locationIcon">
+            <img src="../assets/location.png" alt="locationIcon" />
+            Tirupur
+          </span>
+
+          <div class="accountDetails">
+            <span class="followers-count">5 Followers</span>
+            <span class="following-count">12 Following</span>
+            <span class="publishedposts-count">5 Posts</span>
+            <span class="profilefollow--btn">
+              <input type="submit" value="Follow" />
+            </span>
+          </div>
+        </div>
+
+        <div class="accountEventDetails">
+          <span class="attended-events" id="event-box">
+            <h3>Attended Events</h3>
+            <div class="attendedEventsSection">
+              <a routerLink="/posts" class="attendedEvent-link"
+                >Sheeran Event</a
+              >
+              <a routerLink="/posts" class="attendedEvent-link"
+                >Ed Sheeran Event</a
+              >
+              <a routerLink="/posts" class="attendedEvent-link"
+                >Ed Sheeran Event</a
+              >
+              <a routerLink="/posts" class="attendedEvent-link"
+                >Ed Sheeran Event</a
+              >
+            </div>
+          </span>
+
+          <span class="hosted-events" id="event-box">
+            <h3>Hosted Events</h3>
+            <div class="hostedEventsSection">
+              <span class="event">
+                <a routerLink="/posts" class="attendedEvent-link"
+                  >Watch party</a
+                >
+              </span>
+            </div>
+          </span>
+
+          <span class="user-interests" id="event-box">
+            <h3>User Interests</h3>
+            <div class="interestsSection">
+              <a routerLink="/posts">news</a>
+              <a routerLink="/posts">news</a>
+              <a routerLink="/posts">news</a>
+              <a routerLink="/posts">news</a>
+              <a routerLink="/posts">news</a>
+              <a routerLink="/posts">news</a>
+              <a routerLink="/posts">news</a>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="user-posts">
+      <h3>Posts</h3>
+      <div class="userPosts">
+        <div *ngFor="let post of posts" class="userPost">
+          <span class="userPostImage">
+            <img
+              [src]="post.urls ? post.urls[0] : 'UrbanView.png'"
+              id="PostImage"
+            />
+          </span>
+          <span class="userPostDetails">
+            <span class="userPostTitle">
+              <h4>Title</h4>
+              {{ post.title }}
+            </span>
+            <span class="userPostDescription">
+              <h4>Description</h4>
+              {{ post.description }}
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

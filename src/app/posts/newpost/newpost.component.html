@@ -1,0 +1,86 @@
+<div class="newpost__container">
+  <app-navbar></app-navbar>
+  <div class="container_createpost" id="container_createpost">
+    <div class="navigation">
+      <span>
+        <a routerLink="/posts">
+          <img src="../assets/prev.png" alt="prevIcon" id="prevIcon" />
+        </a>
+      </span>
+      <span class="navigation--text">Posts</span>
+    </div>
+    <div class="createContainer">
+      <h3>Create new Post</h3>
+      <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+        <div class="createInput">
+          <label for="title">Title</label>
+          <input type="text" id="title" formControlName="title" />
+        </div>
+        <div class="createInput">
+          <label for="description">Description</label>
+          <textarea name="description" id="description" cols="30" rows="10"></textarea>
+        </div>
+        <div class="createInput">
+          <label for="location">Location</label>
+          <input type="text" id="location" formControlName="location" />
+        </div>
+        <div class="createInput">
+          <label for="tags">Tags</label>
+          <input type="text" id="tags" formControlName="tags" />
+        </div>
+        <div class="createInput" id="post_images">
+          <label for="images" >Post Images</label>
+          <input
+            type="file"
+            id="images"
+            formControlName="images"
+            multiple
+            accept="image/jpeg,image/png,image/gif"
+          />
+        </div>
+        <div class="createInput" id="post_videos">
+          <label for="videos" >Post Videos</label>
+          <input type="file" id="videos" formControlName="videos" multiple />
+        </div>
+        <div class="createInput">
+          <label for="post_type">Post Type</label>
+          <select
+            id="post_type"
+            formControlName="post_type"
+            class="post_typeDropdown"
+          >
+            <option
+              *ngFor="
+                let type of ['Events', 'News', 'Jobs', 'Charity', 'Explore']
+              "
+            >
+              {{ type }}
+            </option>
+          </select>
+        </div>
+        <div class="createInput">
+          <label for="enable_event" class="enable-event-label"
+            >Enable Event</label
+          >
+          <input
+            type="checkbox"
+            id="enable_event"
+            formControlName="enable_event"
+            class="enable-event-checkbox"
+          />
+        </div>
+        <div class="createInput">
+          <label for="start_date">Start date</label>
+          <input type="datetime-local" id="start_date" formControlName="start_date" />
+        </div>
+        <div class="createInput">
+          <label for="end_date">End date</label>
+          <input type="datetime-local" id="end_date" formControlName="end_date" />
+        </div>
+        <div class="createInput">
+          <button type="submit" class="createBtn">Create Post</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
