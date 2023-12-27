@@ -1,1 +1,206 @@
-<p>showpost works!</p>
+<div class="showpost__container">
+  <app-navbar></app-navbar>
+  <div class="container_detailpost">
+    <div class="navigation">
+      <span>
+        <a routerLink="/posts">
+          <img src="../assets/prev.png" alt="prevIcon" id="prevIcon" />
+        </a>
+      </span>
+      <span class="navigation--text">Back to Home</span>
+    </div>
+    <div class="detailContainer">
+      <div class="detailUser">
+        <div class="postTitle">
+          <h1>{{ post.title }}</h1>
+          <div class="postButtons">
+            <button class="share-post-button">
+              <img src="../assets/share.png" alt="Share Post" /> Share Post
+            </button>
+          </div>
+        </div>
+        <div class="detailuserSection">
+          <div class="user">
+            <span class="userLogo">
+              <img
+                *ngIf="post.avatar"
+                [src]="post.avatar"
+                class="detailAvatar"
+              />
+            </span>
+            <span class="userData">
+              <span>
+                <a [routerLink]="['/user', post.id]" class="user_profile-link">
+                  &#64;{{ post.username }}
+                </a>
+              </span>
+              <span> Posted on {{ post.created_at | date : "d MMMM y" }} </span>
+            </span>
+            <span class="follow_unfollow-btn">
+              <button>Follow</button>
+              <!-- <button
+                *ngIf="currentUser != post.user && isFollowing(post.user)"
+                (click)="unfollowUser(post.user)"
+              >
+                Unfollow
+              </button> -->
+            </span>
+          </div>
+          <div class="interactionButtons" [attr.data-post-id]="post.id">
+            <ng-container *ngIf="post.post_type === 'Events'">
+              <button
+                [ngClass]="{
+                  selected: post.selected_option === 'going',
+                  'like-post-button': true
+                }"
+              >
+                <span>🙌</span>
+                <span id="going_count">{{ post.going_count }} Going</span>
+              </button>
+              <button
+                [ngClass]="{
+                  selected: post.selected_option === 'going',
+                  'dislike-post-button': true
+                }"
+              >
+                <span>😔</span>
+                <span id="going_count"
+                  >{{ post.notgoing_count }} Not Going</span
+                >
+              </button>
+              <button
+                [ngClass]="{
+                  selected: post.selected_option === 'going',
+                  'maybe-post-button': true
+                }"
+              >
+                <span>😶‍🌫️</span>
+                <span id="going_count">{{ post.maybe_count }} Maybe</span>
+              </button>
+            </ng-container>
+            <ng-container *ngIf="post.post_type === 'Charity'">
+              <button
+                [ngClass]="{
+                  selected: post.selected_option === 'donated',
+                  'like-post-button': true
+                }"
+              >
+                <span>💗</span>
+                <span id="donated_count">{{ post.donated_count }} Donated</span>
+              </button>
+            </ng-container>
+            <ng-container
+              *ngIf="
+                post.post_type !== 'Events' && post.post_type !== 'Charity'
+              "
+            >
+              <button
+                [ngClass]="{
+                  selected: post.selected_option === 'like',
+                  'like-post-button': true
+                }"
+              >
+                <img src="../assets/like.png" alt="like" />
+                <span id="like_count">{{ post.like_count }} Likes</span>
+              </button>
+              <button
+                [ngClass]="{
+                  selected: post.selected_option === 'dislike',
+                  'dislike-post-button': true
+                }"
+              >
+                <img src="../assets/dislike.png" alt="like" />
+                <span id="like_count">{{ post.dislike_count }} Dislikes</span>
+              </button>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="detailImagesSlider">
+        <app-carousel [ImageUrls]="post.urls"></app-carousel>
+      </div>
+
+      <div
+        *ngIf="post.post_type === 'Events'"
+        class="interactionButtonsSection"
+      >
+        Share your decision:
+        <button class="like-post-button">
+          <span>🙌</span>
+          <span> Going</span>
+        </button>
+        <button class="dislike-post-button">
+          <span>😔</span>
+          <span> Not Going</span>
+        </button>
+        <button class="maybe-post-button">
+          <span>😶‍🌫️</span>
+          <span> Maybe</span>
+        </button>
+      </div>
+
+      <div class="descriptionContainer">
+        <div class="descriptionHeading">
+          <h2>Description</h2>
+        </div>
+        <div class="description">
+          <div class="detailDescription">
+            {{ post.description }}
+          </div>
+        </div>
+      </div>
+
+      <div class="tagsSection">
+        <div class="tagsHeading">
+          <h2>Tags</h2>
+        </div>
+        <span *ngFor="let tag of post.tags_array" class="tags">{{ tag }}</span>
+      </div>
+
+      <div class="comments">
+        <div class="commentsHeading">
+          <h2>Comments</h2>
+        </div>
+
+        <div class="commentsSection">
+          <div class="commentsForm">
+            <div class="commentsForm_userLogo">
+              <img
+                *ngIf="post.avatar"
+                [src]="post.avatar"
+                class="commentAvatar"
+              />
+            </div>
+            <div class="commentsForm_form">
+              <textarea placeholder="Add a comment"></textarea>
+              <button class="commentSubmitbtn">Submit</button>
+            </div>
+          </div>
+
+          <div class="commentsList">
+            <div *ngFor="let comment of post.comments" class="comment">
+              <div class="commentUser">
+                <div class="commentUser_userLogo">
+                  <img
+                    *ngIf="comment.avatar"
+                    [src]="comment.avatar"
+                    class="commentAvatar"
+                  />
+                </div>
+              </div>
+              <div class="commentContent">
+                <div class="commentContent_user">
+                  {{ comment.username }} &middot;
+                  {{ comment.created_at | date : "d MMM y" }}
+                </div>
+                <div class="commentContent_content">
+                  {{ comment.content }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

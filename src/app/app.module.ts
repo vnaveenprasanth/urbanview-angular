@@ -12,6 +12,8 @@ import { PostsComponent } from './posts/posts.component';
 import { NewpostComponent } from './posts/newpost/newpost.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShowpostComponent } from './posts/showpost/showpost.component';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +26,9 @@ import { ShowpostComponent } from './posts/showpost/showpost.component';
     PostsComponent,
     NewpostComponent,
     ShowpostComponent,
+    CarouselComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule,FormsModule,ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule,FormsModule,ReactiveFormsModule,SlickCarouselModule],
   providers: [],
   bootstrap: [AppComponent],
 })

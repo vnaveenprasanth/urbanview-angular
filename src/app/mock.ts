@@ -8,13 +8,18 @@ export const posts = [
         created_at: "17 Dec 23",
         user_id: 12,
         event_status: 'Ended',
-        urls: ["../assets/edsheeranevent.avif"],
-        going_count: 0,
-        donated_count: 1,
+        urls: ["../assets/edsheeranevent.avif","../assets/edsheeranevent.avif","../assets/edds.jpg"],
+        going_count: 1,
+        notgoing_count: 0,
+        maybe_count:0,
+        donated_count: 0,
         like_count: 0,
-        post_type: 'Charity',
+        dislike_count:0,
+        post_type: 'Events',
         avatar: '../assets/userimage.png',
-        username: 'naveenprasanth'
+        username: 'naveenprasanth',
+        selected_option: '',
+        comments:[{username: 'naveen', id: 15, content: 'Testing the comment section witth mock data!',avatar:'../assets/userimage.png',created_at:'19 Dec 23'},{username: 'naveen', id: 15, content: 'Testing the comment section witth mock data!',avatar:'../assets/userimage.png',created_at:'19 Dec 23'}]
     }, {
         id: 2,
         title: "Ed Sheeran in BLR!!!",
