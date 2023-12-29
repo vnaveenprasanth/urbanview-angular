@@ -1,30 +1,31 @@
 <div class="sign-in__container">
     <div class="sign-in__header">
-        <img src="/assets/UrbanView.png" id="sign-in__header--logo" alt="urbanviewLogo" />
-        <h1 class="sign-in__header--text">UrbanView</h1>
+      <img src="/assets/UrbanView.png" id="sign-in__header--logo" alt="urbanviewLogo" />
+      <h1 class="sign-in__header--text">UrbanView</h1>
     </div>
     <div class="sign-in__body">
-        <div class="sign-in__body--imagecontainer">
-            <img src="/assets/City.avif" id="sign-in__body--image" />
+      <div class="sign-in__body--imagecontainer">
+        <img src="/assets/City.avif" id="sign-in__body--image" />
+      </div>
+      <div class="sign-in__body--formcontainer">
+        <form (ngSubmit)="onSubmit()" [formGroup]="signInForm">
+          <div class="input">
+            <label for="sign-in__body--emailInput">Email</label>
+            <input id="sign-in__body--emailInput" type="text" formControlName="username" />
+          </div>
+          <div class="input">
+            <label for="sign-in__body--passwordInput">Password</label>
+            <input id="sign-in__body--passwordInput" type="password" formControlName="password" />
+          </div>
+          <div class="btn">
+            <input type="submit" value="Sign In" id="sign-in__body-btn" />
+          </div>
+        </form>
+        <div class="sign-in__body--links">
+          <a routerLink="/forgotpassword">Forgot Password</a>
+          <a routerLink="/signup">New here? Sign up Now!</a>
         </div>
-        <div class="sign-in__body--formcontainer">
-            <form action="/posts">
-                <div class="input">
-                <label for="sign-in__body--emailInput">Email</label>
-                <input id="sign-in__body--emailInput" type="text" />
-                </div>
-                <div class="input">
-                <label for="sign-in__body--passwordInput">Password</label>
-                <input id="sign-in__body--passwordInput" type="password" />
-                </div>
-                <div class="btn">
-                <input type="submit" value="Sign In" id="sign-in__body-btn"/>
-                </div>
-            </form>
-            <div class="sign-in__body--links">
-                <a routerLink="/forgotpassword">Forgot Password</a>
-                <a routerLink="/signup">New here? Sign up Now!</a>
-            </div>
-        </div>
+      </div>
     </div>
-</div>
+  </div>
+  

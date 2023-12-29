@@ -1,7 +1,7 @@
 <div class="posts__container">
   <app-navbar></app-navbar>
   <div class="container_posts" id="container_posts">
-    <div *ngFor="let post of posts" class="posts_card">
+    <div *ngFor="let post of posts" class="posts_card" (click)="goToPostShowPage(post.id)">
       <div class="post" [attr.id]="'post_' + post.id">
         <div class="postStatus" *ngIf="post.event_status">
           <span

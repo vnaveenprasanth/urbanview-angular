@@ -11,7 +11,7 @@
     </div>
     <div class="userprofile__profile">
       <div class="userprofile__profile--image">
-        <img src="../assets/userimg.png" alt="profileImage" />
+        <img src="../assets/gojo.png" alt="profileImage" />
       </div>
       <div class="userprofile__profile--data">
         <div class="userDetails">
@@ -96,7 +96,7 @@
             </span>
             <span class="userPostDescription">
               <h4>Description</h4>
-              {{ post.description }}
+              {{ post.description.slice(0, 200) }}...
             </span>
           </span>
         </div>

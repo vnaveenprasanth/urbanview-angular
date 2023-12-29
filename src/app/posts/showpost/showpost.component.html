@@ -59,7 +59,7 @@
               </button>
               <button
                 [ngClass]="{
-                  selected: post.selected_option === 'going',
+                  selected: post.selected_option === 'not_going',
                   'dislike-post-button': true
                 }"
               >
@@ -70,7 +70,7 @@
               </button>
               <button
                 [ngClass]="{
-                  selected: post.selected_option === 'going',
+                  selected: post.selected_option === 'maybe',
                   'maybe-post-button': true
                 }"
               >
@@ -116,8 +116,51 @@
           </div>
         </div>
       </div>
-      <div class="detailImagesSlider">
+
+      <div *ngIf="!post.chats.length" class="detailImagesSlider">
         <app-carousel [ImageUrls]="post.urls"></app-carousel>
+      </div>
+
+      <div *ngIf="post.chats.length" class="detailLiveSection">
+        <div class="detailVideoStreamer shadow">
+          <vg-player class="video">
+            <video
+              [vgMedia]="$any(media)"
+              #media
+              id="singleVideo"
+              preload="auto"
+              controls
+            >
+              <source
+              src="https://res.cloudinary.com/dqrt7ghqi/video/upload/vqkmznczsainzd2eesfg.mp4" 
+                type="video/mp4"
+              />
+            </video>
+          </vg-player>
+        </div>
+
+        <div class="detailLiveChat">
+          <div id="chat-section" class="chat-section">
+            <div *ngFor="let chat of post.chats" class="chat-message">
+              <span class="chat_Useravatar">
+                <img
+                  *ngIf="chat.avatar"
+                  [src]="chat.avatar"
+                  class="chatAvatar"
+                />
+              </span>
+              <span class="chat_Username">{{ chat.user }}</span>
+              <span class="chat_Message">{{ chat.content }}</span>
+            </div>
+          </div>
+          <form id="new-chat-form">
+            <textarea
+              #chatContent
+              placeholder="Type your message here"
+            ></textarea>
+            <button type="submit">Send</button>
+          </form>
+        </div>
       </div>
 
       <div

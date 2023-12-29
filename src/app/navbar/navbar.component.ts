@@ -1226,6 +1226,7 @@ export class NavbarComponent {
     "Zirakpur",
     "Zunheboto",
   ];
+  
   selectedCity: string = '';
   showDropdown: boolean = false;
   showuserDropdown: boolean = false;
